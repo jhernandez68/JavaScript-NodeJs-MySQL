@@ -1,0 +1,19 @@
+thead tr th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table-responsive{
+    height: 200 px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: auto;
+    grid-auto-rows: minmax(100px, auto);
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 110%;
+}

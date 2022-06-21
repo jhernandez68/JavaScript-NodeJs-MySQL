@@ -1,0 +1,122 @@
+{{!--HBS para filtrar Ordenes de productividad por Fecha Inicial- Fecha Final y área--}}
+<link href="/CSS/inputs.css" rel="stylesheet" type="text/css">
+
+{{!--Script de alerta--}}
+
+<script type="text/javascript">
+    function confirmation(){
+        if(confirm("¿Está seguro de actualizar los datos de la orden ?")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+
+<br>
+<form action="/editot/edit" method="post" onsubmit="return confirmation()">
+
+    <div class="container-fluid text-center" >
+        {{!-- Container botones principales --}}
+        <table class="table table-bordered table-hover">
+            <div class="container-fluid text-center row justify-content-start "> 
+            </div>
+            <thead class="thead-dark">
+            {{!--Cabecera de la tabla--}}
+                <tr>
+                    <th>Dato</th>
+                    <th>Nuevo valor</th>
+                </tr>
+            </thead>
+
+            {{!-- Se lista dinamicamente cada uno de los campos --}}
+
+                <tbody>
+                {{!--Contenido de la tabla--}}
+                    <tr>
+                        <td>Fecha Inicio</td>
+                        <td>
+                            <input type="Date" name="date_1" class="form-control"  aria-label="date1">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fecha Fin</td>
+                        <td>
+                            <input type="Date" name="date_2" class="form-control" aria-label="date_2">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Orden</td>
+                        <td>
+                            <input type="Text" name="orden" class="form-control" aria-label="orden" placeholder="ORDEN">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Módulo</td>
+                        <td>
+                            <input type="Text" name="modulo" class="form-control" aria-label="modulo" placeholder="MÓDULO">                                     
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Área</td>
+                        <td>
+                            <div class="input-group mb-3" type="xd">
+                                    <select class="custom-select" name="area">
+                                        <option value="almohada">Área</option>
+                                        <option value="acolchado">Acolchado</option>
+                                        <option value="almohada">Almohada</option>
+                                        <option value="corte">Corte</option>
+                                        <option value="confeccion">Confección</option>
+                                        <option value="empaque">Empaque</option>
+                                    </select>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>T_Est</td>
+                        <td>
+                            <input type="Text" name="t_est" class="form-control" aria-label="t_est" placeholder="t_estandar">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Unidades primera</td>
+                        <td>
+                            <input type="Text" name="u_primera" class="form-control" aria-label="u_primera" placeholder="Unidades de primera">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Unidades Segunda</td>
+                        <td>
+                            <input type="Text" name="u_segunda" class="form-control" aria-label="u_segunda" placeholder="Unidades segunda">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Tiempo total</td>
+                        <td>
+                            <input type="Text" name="t_total" class="form-control" aria-label="t_total" placeholder="Tiempo total"><br>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Rendimiento</td>
+                        <td>
+                            <input type="Text" name="rendimiento" class="form-control" aria-label="rendimiento" placeholder="Rendimiento"><br>
+                        </td>
+                    </tr>
+                </tbody>
+            </form>
+        </table>
+            <div class="form-group">
+        <button class="btn btn-success bg-danger"> ACTUALIZAR</button>
+    </div>
+    </div>
+    
+</form>

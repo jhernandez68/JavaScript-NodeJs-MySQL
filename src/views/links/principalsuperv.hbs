@@ -1,0 +1,102 @@
+{{!-- hbs para menú de supervisores - no tiene CRUD de ordenes--}}
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+
+<br><br><br>
+
+{{!--wrapper para hacer el grid de todos los divs - cards --}}
+<div class="wrapper">
+
+    {{!-- Card para liquidación de ordenes--}}
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Liquidación</h3>
+        </div>
+        <div class="card-body">
+            <img src="/img/liquidacion.png" class="card-img-top mx-auto m-2 w-50">
+            <div class="from-group">
+                <form action="/mainmenu" method="/get">
+                    <button class="btn btn-success btn-block">
+                        Liquidación
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!--Card para ordenes, solo permite leer datos--}}
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Ordenes</h3>
+        </div>
+        <div class="card-body">
+            <img src="/img/buscar.png" class="card-img-top mx-auto m-2 w-50">           
+            <div class="form-group">                
+                <form action="/export" method="/get">
+                    <button class="btn btn-success btn-block" >
+                        Ordenes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    {{!--Card para novedades--}}
+    <div class="card text-center ">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Novedades</h3>
+        </div>
+
+        <div class="card-body">
+            <img src="/img/buscar2.png" class="card-img-top mx-auto m-2 w-50">           
+            <div class="form-group">                
+                <form action="/rp_novedades" method="get">
+                    <button class="btn btn-success btn-block" >
+                        Búsqueda en novedades
+                    </button> 
+                </form><br>
+            </div>
+        </div>
+    </div>    
+
+    {{!--Card para gráficas--}}
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Gráficas</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <img src="/img/graficasxd.jpg" class="card-img-top mx-auto m-2 w-50">                 
+                    <form action="/graficos" method="get">
+                        <button class="btn btn-success btn-block">
+                            Gráficas
+                        </button>
+                    </form><br>
+            </div>
+        </div>
+    </div>
+
+    {{!--Card para mantenimiento--}}
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Mantenimiento</h3>
+        </div>
+        <div class="card-body">
+        <img src="/img/coser.png" class="card-img-top mx-auto m-2 w-50">
+            <div class="form-group">                
+                <form>
+                    <div class="dropdown">
+                        <button class="btn btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Mantenimiento
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/graficosmtto">Liquidación</a>
+                            <a class="dropdown-item" href="/novedadesmtto">Novedades</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>

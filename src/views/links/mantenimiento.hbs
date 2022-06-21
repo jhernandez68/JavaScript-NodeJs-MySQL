@@ -1,0 +1,85 @@
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid text-center" >
+    <br>
+      <div class="ex1">
+          <h5><i>  Fecha Inicial: {{date_1}}</i></h5>
+          <h5><i>  Fecha final: {{date_2}}</i></h5>
+          <h5><i>  Hora inicio: {{time_1}}</i></h5>
+          <h5><i>  Hora fin: {{time_2}}</i></h5>
+      </div>
+    <br>
+
+    {{!-- Container botones principales --}}
+    <table class="table table-bordered table-striped table-hover">
+        <div class="container-fluid text-center row justify-content-start "> 
+            
+            <form action="/graficosmtto" method="get">
+              <button class="btn btn-danger text-center-m1 mr-1">
+                Filtrar por Fecha
+              </button>
+            </form>
+
+            <form action="/downloadmtto" method="get">
+                <button class="btn btn-success text-center-m1 mr-1">
+                Descargar CSV
+                </button>
+            </form>
+
+            <form action="/searchmtto" method="post" >
+            {{!--Se listan las máquinas encontradas en la db--}}
+                <div class="input-group">
+                        <select class="custom-select" name="maquina">
+                            <option value="Plana">Seleccione máquina</option>
+                            {{#each listmtto}}
+                                <option value="{{maquina}}">{{maquina}}
+                                </option>
+                            {{/each}}    
+                        </select>
+
+                    <button class="btn btn-danger text-center mr-1" >
+                        Buscar máquina
+                    </button>
+                </div>
+            </form>
+            
+        </div>
+
+        <thead class="thead-dark">
+        {{!--Cabecera de la tabla--}}
+            <tr>
+                <th>Máquina</th>
+                <th scope="col">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle btn text-light" data-toggle="dropdown" href="#">Tipo de reporte</a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><a class="btn" href="/paromtto"> Paro</a></li>
+                            <li><a class="btn" href="/fallamtto"> Falla</a></li>
+                        </ul>
+                    </div>
+                </th>
+                <th>Fecha inicial</th>
+                <th>Hora inicial</th>
+                <th>Fecha final</th>
+                <th>Hora final</th>
+                <th>Tiempo</th>
+            </tr>
+        </thead>
+
+        {{!-- Se lista dinamicamente cada uno de los campos --}}
+    {{#each mantenimiento}}
+            <tbody>
+            {{!--Contenido de la tabla--}}
+                <tr>
+                    <td>{{maquina}}</td>
+                    <td>{{t_reporte}}</td>
+                    <td>{{f_inicial}}</td>
+                    <td>{{h_inicial}}</td>
+                    <td>{{f_final}}</td>
+                    <td>{{h_final}}</td>
+                    <td>{{tiempo}}</td>
+                </tr>
+            </tbody>
+    {{/each}}
+    </table>
+</div>

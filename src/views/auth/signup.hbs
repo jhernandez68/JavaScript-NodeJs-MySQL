@@ -1,0 +1,55 @@
+{{!-- hbs con la vista de registro de usuarios --}}
+
+{{!--Script para mostrar/ocultar contraseña de usuario--}}
+<script type="text/javascript">
+    function showPassword(){
+        //Variable para mostrar contraseña
+        var pw = document.getElementById("passwordInput");
+        if (pw.type === "password") {
+            pw.type = "text";
+        } else {
+            pw.type = "password";
+        }
+    }
+</script>
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header bg-info">
+                    <h3 class="text-light">REGISTRO DE USUARIOS</h3>
+                </div>
+                    <div class="card-body">
+                        <img src="/img/logo_brissa_1.png" class="card-img-top mx-auto m-2 w-50"><br><br>
+                            <form action="/signup" method="post">
+                                <div class="form-group">
+                                    <input type="text" name="fullname" placeholder="Nombre" class="form-control" autofocus>
+                                </div>
+                            <div class="form-group">
+                                <input type="text" name="username" placeholder="Usuario" class="form-control">
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="custom-select" name="rol">
+                                    <option value="Supervisor">Supervisor</option>
+                                    <option value="Reportes">Reportes</option>
+                                    <option value="Planeacion">Planeación</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="Contraseña" class="form-control" id="passwordInput"><br>
+                                <input type="checkbox" onclick="showPassword()"> Mostrar contraseña
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-info btn-block">
+                                    REGISTRAR
+                                </button>
+                                <p class="mt-5 mb-4 text-muted">© 2022</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

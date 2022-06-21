@@ -1,0 +1,56 @@
+CREATE DATABASE database_links;
+
+CREATE TABLE users(
+    id INT NOT NULL,
+    username VARCHAR(20) NOT NULL,
+    password VARCHAR(60) NOT NULL,
+    fullname VARCHAR(100) NOT NULL
+);
+
+ALTER TABLE users
+    ADD PRIMARY KEY (id);
+
+ALTER TABLE users
+    MODIFY id INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+DESCRIBE users;
+
+CREATE TABLE link(
+    id INT NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    user_id int,
+    created_at timestamp NOT NULL DEFAULT current_timestamp,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+ALTER TABLE link
+    ADD PRIMARY KEY (id);
+
+ALTER TABLE link
+    MODIFY id INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+    
+CREATE TABLE OT(
+    unidades INT NOT NULL,
+    referencia VARCHAR(400),
+    Area VARCHAR(60) NOT NULL,
+    nombre VARCHAR(300) NOT NULL,
+    t_estandar INT NOT NULL
+);
+
+CREATE TABLE ordenes(
+    OT VARCHAR(500),
+    PARTE VARCHAR(500),
+    DESCRIPCION VARCHAR(500),
+    CANTIDAD VARCHAR(500),
+    FECHA VARCHAR(500),
+    TURNO VARCHAR(500),
+    TE VARCHAR(500),
+    DESTINO VARCHAR(500),
+    AREA VARCHAR(500),
+    MODULO VARCHAR(500),
+    ESTADO VARCHAR(500)
+);
+
+ALTER TABLE users
+    ADD COLUMN rol VARCHAR(500)

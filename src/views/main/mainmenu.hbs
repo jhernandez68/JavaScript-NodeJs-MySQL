@@ -1,0 +1,261 @@
+{{!--hbs menu principal para cargar ordenes --}}
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+
+{{!-- Script - Borrar usuario --}}
+<script type="text/javascript">
+    function confirmation(){
+        if(confirm("¿Está seguro de BORRAR la orden = ?")){
+                return true;
+            } else {
+                return false;
+            }
+        }
+</script>
+
+<script type="text/javascript">
+    function confirmation2(){
+        if(confirm("¿Está seguro de GUARDAR la orden?")){
+                return true;
+            } else {
+                return false;
+            }
+        }
+</script>
+
+<script type="text/javascript">
+    function searchTable(){
+
+        var input, filter, found, table, tr, td, i, j;
+        input = document.getElementById("entrada");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tabla");
+        tr = table.getElementsByTagName("tr");
+        
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tr[i].style.display = "";
+                found = false;
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+{{#if user}}
+
+{{!-- Si el usuario esta logeado--}}
+<div class="wrapper">
+    {{!--Card para ordenes, solo permite leer datos--}}
+    <div class="card text-center contenedor-centrado2">
+        <div class="card-body">
+            <form action="/addMainOT" method="post">
+                <div class="input-group mb-3">
+                    <input type="search" class="form-control rounded" placeholder="Orden" aria-label="Search" aria-describedby="search-addon"  name="Search"/>
+                    <div class="input-group-append">
+                        <button class="btn btn-danger text-center mr-1 " >
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card text-center contenedor-centrado2">
+        <div class="card-body">
+            <form action="#" method="post">
+                <div class="input-group mb-3">
+                    <input id='entrada' onkeyup='searchTable()' type='text' placeholder=" Filtrar orden">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+{{!--Info de ordenes--}}
+<div class="container-fluid text-center">
+    <table class="table table-bordered table-striped table-hover" id='tabla'>
+
+        {{!--Cabecera de la tabla--}}
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>Orden</th>
+                <th>Parte</th>
+                <th>Desc</th>
+                <th>Prog</th>
+                <th>T_Est</th>
+                <th>Destino</th>
+                <th>Modulo</th>
+                <th>Ruta</th>
+                <th>F_ini</th>
+                <th>H_ini</th>
+                <th>F_fin</th>
+                <th>H_fin</th>
+                <th>T_total</th>
+                <th>Primera</th>
+                <th>Segunda</th>
+                <th>Rto</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+
+        {{!--Ciclo para mostrar ordenes instanciadas en 'logArea'--}}
+        {{#each logArea}}
+            <tbody>
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{orden}}</td>
+                    <td>{{parte}}</td>
+                    <td>{{descripcion}}</td>
+                    <td>{{und_prg}}</td>
+                    <td>{{t_est}}</td>
+                    <td>{{destino}}</td>
+
+                    <td> {{!-- td para el módulo--}}
+                        <form action="/manageModulo/{{id}}" method="post">
+                            <input type="search" class="form-control rounded" placeholder="N/A" aria-label="modulo" aria-describedby="search-addon"  name="modulo" value="{{modulo}}"/>
+                                <div class="form-group espacio-sup-inf">
+                                    <button class="btn btn-success btn-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                        </svg>
+                                    </button>
+                                </div>                        
+                        </form>
+                    </td>
+
+                    <td> {{!--td para mostrar rutas--}}
+                        <form action="#" method="">
+                            <div class="form-group espacio-sup-inf">
+                                <button class="btn btn-success btn-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+                                        <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+                                        <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+
+                    <td>{{f_inicio}}</td>
+                    <td>{{h_inicio}}</td>
+                    <td>{{f_fin}}</td>
+                    <td>{{h_fin}}</td>
+                    <td>{{t_total}}</td>
+
+                    <td> {{!--td para unidades de primera--}}
+                        <form action="/manageu_primera/{{id}}" method="post">
+                            <input type="Text" name="u_primera" class="form-control" aria-label="u_primera" placeholder="N/A" value="{{u_primera}}">
+                                <div class="form-group espacio-sup-inf">
+                                    <button class="btn btn-info btn-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                        </svg>
+                                    </button>
+                                </div>                        
+                        </form>
+                    </td>
+
+                    <td> {{!-- td para unidades de segunda --}}
+                        <form action="/manageu_segunda/{{id}}" method="post">
+                            <input type="Text" name="u_segunda" class="form-control" aria-label="u_segunda" value="{{u_segunda}}">
+                                <div class="form-group espacio-sup-inf">
+                                    <button class="btn btn-info btn-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                        </svg>
+                                    </button>
+                                </div>                        
+                        </form>
+                    </td>
+
+                    <td>{{rendimiento}}</td>
+                    
+                    <td>
+                        <div class="form-group">
+                            <div class="wrapper4">
+
+                                <div class="espaciowrapper4">
+                                    <form action="/addOTOperator/{{id}}" method="get">
+                                        <button class="btn btn-warning btn-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+ 
+                                <div class="espaciowrapper4">
+                                    <form action="/addCommentOT/{{id}}" method="get">
+                                        <button class="btn btn-warning btn-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="espaciowrapper4">
+                                    <form action="#" method="get">
+                                        <button class="btn btn-success btn-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
+                                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="espaciowrapper4">
+                                    <form action="/deleteMainOT/{{id}}" onsubmit="return confirmation()" method="get">
+                                        <button class="btn btn-danger btn-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>                          
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        {{/each}}
+    </table>
+</div>
+
+{{else}}
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+{{!--Si el usuario no se ha logeado--}}
+    <div class="wrapper2">
+        <div class="card text-center">
+            <div class="card-header bg-info">
+                <h3 class="text-light">Sesión caducada</h3>
+            </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <img src="/img/logo_brissa_1.png" class="card-img-top mx-auto m-2 w-50">
+                    <br>           
+                        <form action="/logout" method="get">
+                            <button class="btn btn-danger btn-block">
+                                Inicio de sesión
+                            </button>
+                        </form><br>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/if}}

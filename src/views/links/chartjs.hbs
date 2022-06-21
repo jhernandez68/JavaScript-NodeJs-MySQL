@@ -1,0 +1,395 @@
+
+{{!--hbs para mostrar gráficas--}}
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+
+<div class="container-fluid text-center" >
+    {{!--table-hover: Propiedad para marcar cada row--}}
+    <br>
+      <div class="ex1">
+          <h5><i>Fecha Inicial: {{date_1}}</i></h5>
+          <h5><i>Fecha final: {{date_2}}</i></h5>
+          <h5><i>Hora inicio: {{time_1}}</i></h5>
+          <h5><i>Hora fin: {{time_2}}</i></h5>
+      </div>
+    <br>
+    
+    <table class="table table-bordered table-striped table-hover">
+
+        <div class="container-fluid text-center row justify-content-start "> 
+            
+            {{!--Botón para actualizar la tabla, utiliza location.reload()--}}
+            <form action="javascript:location.reload()">
+              <button class="btn btn-danger text-center-m1 mr-1">
+                <a class="text-light">Actualizar</a>
+                {{!--Icono de !--}}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                  </svg> 
+              </button>
+            </form> 
+
+            {{!-- Botón para volver a filtrar --}}
+            <form action="/graficos" method="get">
+              <button class="btn btn-danger text-center-m1" >
+                Filtrar
+              </button>
+            </form>
+        </div>
+
+        <thead class="thead-dark">
+        {{!--Cabecera de la tabla--}}
+            <tr>
+                <th>Área</th>
+                <th>Rendimiento promedio</th>
+                <th>Unidades primera</th>
+                <th>Unidades segunda</th>
+                <th>Total unidades</th>
+                <th>Tiempo total</th>
+            </tr>
+        </thead>
+
+        {{!-- Se lista dinamicamente cada uno de los campos --}}
+            <tbody>
+            {{!--Contenido de la tabla--}}
+                <tr>
+                    <td>Acolchado</td>
+                    <td>
+                        <script type="text/javascript">
+                          function nanComprobation(x){
+                            if(isNaN(x)){
+                              return document.write('Registro Erroneo')
+                            }else{
+                              return document.write({{rdoAcolchado}}.toFixed(3));;
+                            }
+                          }
+                          nanComprobation({{rdoAcolchado}});
+                        </script>
+                    </td>
+                    <td>{{u_primeraAcolchado}}</td>
+                    <td>{{u_segundaAcolchado}}</td>
+                    <td>
+                      <script type="text/javascript">
+	                        var total = {{u_primeraAcolchado}} + {{u_segundaAcolchado}}
+                          document.write(total);
+                      </script>
+                    </td>
+                    <td>
+                      {{t_totalAcolchado}}
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Almohada</td>
+                    <td>
+                        <script type="text/javascript">
+                          function nanComprobation(x){
+                            if(isNaN(x)){
+                              return document.write('Registro Erroneo')
+                            }else{
+                              return document.write({{rdoAlmohada}}.toFixed(3));
+                            }
+                          }
+                          nanComprobation({{rdoAlmohada}});                        
+                        </script>
+                    </td>
+                    <td>{{u_primeraAlmohada}}</td>
+                    <td>{{u_segundaAlmohada}}</td>
+                    <td>                        
+                      <script type="text/javascript">
+	                        var total = {{u_primeraAlmohada}} + {{u_segundaAlmohada}}
+                          document.write(total);
+                      </script>
+                    </td>
+                    <td>
+                      {{t_totalAlmohada}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confeccion</td>
+                    <td>
+                        <script type="text/javascript">
+                          function nanComprobation(x){
+                            if(isNaN(x)){
+                              return document.write('Registro Erroneo')
+                            }else{
+                              document.write({{rdoConfeccion}}.toFixed(3));
+                            }
+                          }
+                          nanComprobation({{rdoConfeccion}});  
+                        </script>
+                    </td>
+                    <td>{{u_primeraConfeccion}}</td>
+                    <td>{{u_segundaConfeccion}}</td>
+                    <td>
+                      <script type="text/javascript">
+	                        var total = {{u_primeraConfeccion}} + {{u_segundaConfeccion}}
+                          document.write(total);
+                      </script>
+                    </td>
+                    <td>
+                      {{t_totalConfeccion}}
+                    </td>                    
+                </tr>
+                <tr>
+                    <td>Corte</td>
+                    <td>
+                        <script type="text/javascript">
+                          function nanComprobation(x){
+                            if(isNaN(x)){
+                              return document.write('Registro Erroneo')
+                            }else{
+                              return document.write({{rdoCorte}}.toFixed(3));
+                            }
+                          }
+                          nanComprobation({{rdoCorte}});                          
+
+                        </script>
+                    </td>
+                    <td>{{u_primeraCorte}}</td>
+                    <td>{{u_segundaCorte}}</td>
+                    <td>
+                      <script type="text/javascript">
+	                        var total = {{u_primeraCorte}} + {{u_segundaCorte}}
+                          document.write(total);
+                      </script>
+                    </td>
+                    <td>
+                      {{t_totalCorte}}
+                    </td>                    
+                </tr>
+                <tr>
+                    <td>Empaque</td>
+                    <td>
+                        <script type="text/javascript">
+                          function nanComprobation(x){
+                            if(isNaN(x)){
+                              return document.write('Registro Erroneo')
+                            }else{
+                              return document.write({{rdoEmpaque}}.toFixed(3));
+                            }
+                          }                        
+                          nanComprobation({{rdoEmpaque}});  
+                        </script>
+                    </td>
+                    <td>{{u_primeraEmpaque}}</td>
+                    <td>{{u_segundaEmpaque}}</td>
+                    <td>
+                      <script type="text/javascript">
+	                        var total = {{u_primeraEmpaque}} + {{u_segundaEmpaque}}
+                          document.write(total);
+                      </script>
+                    </td>
+                    <td>
+                      {{t_totalEmpaque}}
+                    </td>                    
+                </tr>
+
+
+                <tr class="text-primary">
+                  
+                  <td><b>TOTAL</b></td>
+
+                  <td><b>
+                      <script type="text/javascript">
+	                        var total = {{rdoAlmohada}} + {{rdoConfeccion}} + {{rdoCorte}} + {{rdoEmpaque}}
+                          total = total / 4;
+
+                          function nanComprobation(x){
+                            if(isNaN(x)){
+                              return document.write('Registro Erroneo')
+                            }else{
+                              return document.write(total.toFixed(3));
+                            }
+                          } 
+                          nanComprobation(total);
+                      </script>
+                  </td></b>
+                  
+                  <td><b>
+                      <script type="text/javascript">
+	                        var total = {{u_primeraAlmohada}} + {{u_primeraConfeccion}} + {{u_primeraCorte}} + {{u_primeraEmpaque}}
+                          document.write(total);
+                      </script>
+                  </td></b>
+                  
+                  <td><b>
+                      <script type="text/javascript">
+	                        var total = {{u_segundaAlmohada}} + {{u_segundaConfeccion}} + {{u_segundaCorte}} + {{u_segundaEmpaque}}
+                          document.write(total);
+                      </script>
+                  </td></b>
+
+                  <td><b>
+                      <script type="text/javascript">
+	                        var total = {{u_primeraAlmohada}} + {{u_primeraConfeccion}} + {{u_primeraCorte}} + {{u_primeraEmpaque}} +{{u_segundaAlmohada}} + {{u_segundaConfeccion}} + {{u_segundaCorte}} + {{u_segundaEmpaque}}
+                          document.write(total);
+                      </script>
+                  </td></b>
+
+                  <td><b>
+                      <script type="text/javascript">
+	                        var total = {{t_totalAcolchado}} + {{t_totalAlmohada}} + {{t_totalConfeccion}} + {{t_totalCorte}} + {{t_totalEmpaque}}
+                          document.write(total.toFixed(3));
+                      </script>
+                  </td></b>                  
+                </tr>
+
+            </tbody>
+    </table>
+</div>
+
+{{!-- Se usa CHART JS para hacer las gráficas--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<br>
+<div class="contenedor-izquierda">
+  <canvas id="myChart" style="width:100%;max-width:600px"></canvas><br>
+</div>
+
+<div class="contenedor-derecho">
+  <canvas id="myChartS2" style="width:100%;max-width:600px"></canvas><br>
+</div>
+<br>
+
+<div class="contenedor-izquierda">
+  <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+</div>
+
+<div class="contenedor-derecho">
+  <canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
+</div>
+
+{{!-- Código para mostrar el gráfico lineal
+<div class="contenedor-derecho">
+  <canvas id="myChart-linear" style="width:100%;max-width:600px"></canvas>
+</div>
+--}}
+
+
+
+<script type="text/javascript">
+
+  var xValues = ["Acolchado", "Almohada", "Confección ", "Corte ",  "Empaque"];
+  var yValues = [{{u_primeraAcolchado}}, {{u_primeraAlmohada}},{{u_primeraConfeccion}}, {{u_primeraCorte}},
+                 {{u_primeraEmpaque}}];
+  var barColors = ["red","red","red","red","red"];
+
+  new Chart("myChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues,
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "UNIDADES DE PRIMERA"
+      }
+    }
+  });
+
+  var xValues2 = ["Acolchado", "Almohada","Confección", "Corte", "Empaque"];
+  var yValues2 = [{{rdoAcolchado}}.toFixed(3), 
+                  {{rdoAlmohada}}.toFixed(3), 
+                  {{rdoConfeccion}}.toFixed(3),
+                  {{rdoCorte}}.toFixed(3), 
+                  {{rdoEmpaque}}.toFixed(3)];
+  var barColors2 = ["blue","blue","blue","blue","blue"];
+  
+  new Chart("myChart2", {
+    type: "bar",
+    data: {
+      labels: xValues2,
+      datasets: [{
+        backgroundColor: barColors2,
+        data: yValues2
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "RENDIMIENTO POR ÁREA"
+        }
+      }
+  });
+
+  var xValues3 = ["Acolchado", "Almohada", "Confección ", "Corte ",  "Empaque"];
+  var yValues3 = [{{u_segundaAcolchado}}, {{u_segundaAlmohada}}, {{u_segundaConfeccion}}, {{u_segundaCorte}},{{u_segundaEmpaque}}];
+  var barColors3 = ["green","green","green","green","green"];
+
+  new Chart("myChartS2", {
+    type: "bar",
+    data: {
+      labels: xValues3,
+      datasets: [{
+        backgroundColor: barColors3,
+        data: yValues3
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "UNIDADES DE SEGUNDA"
+        }
+      }
+  });
+
+  var xValues4 = ["Acolchado", "Almohada", "Confección ", "Corte ",  "Empaque"];
+  var yValues4 = [{{t_totalAcolchado}}, {{t_totalAlmohada}}, {{t_totalConfeccion}}, {{t_totalCorte}},{{t_totalEmpaque}}];
+  var barColors4 = ["orange","orange","orange","orange","orange"];
+
+  new Chart("myChart3", {
+    type: "bar",
+    data: {
+      labels: xValues4,
+      datasets: [{
+        backgroundColor: barColors4,
+        data: yValues4
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "TIEMPO ESTIMADO"
+        }
+      }
+  });  
+</script>
+
+
+<script>
+/*
+  Código para grafica linear
+var xValues = [" Día 1"," Día 2"," Día 3"," Día 4","Día 5","Día 6","Día 7"," Día 8"," Dïa 9"," Días 10"];
+
+new Chart("myChart-linear", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [5673,5207,5553,5666,5780,5110,5330,6210,5830,6278],
+      borderColor: "red",
+      fill: false
+    }]
+  },
+  options: {
+    legend: {display: false},
+      title: {
+        display: true,
+        text: "UNIDADES TOTALES POR DÍA ENTRE Fecha_1 y Fecha_2"
+        }
+  }
+});*/
+</script>
+
+
+<br>

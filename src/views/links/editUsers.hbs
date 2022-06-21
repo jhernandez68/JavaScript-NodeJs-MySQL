@@ -1,0 +1,70 @@
+{{!-- hbs con la vista de editar usuario --}}
+<script type="text/javascript">
+    function confirmation(){
+        if(confirm("¿Está seguro de actualizar los datos?")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+
+{{!--Mostrar datos del usuario actual--}}
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-3 mx-auto">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <p class="text-dark text-left">ID: {{userxd.id}}</p>
+                    <p class="text-dark text-left">Usuario: {{userxd.username}}</p>
+                    <p class="text-dark text-left">Nombre: {{userxd.fullname}}</p>
+                    <p class="text-dark text-left">Rol: {{userxd.rol}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header bg-info">
+                    <p class="text-center">
+                        <a class="btn btn-danger btn-block" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Mostrar/Ocultar datos Actuales</a>
+                    </p>
+                    <h3 class="text-light">EDITANDO DATOS DE USUARIO:</h3>
+                </div>
+                <div class="card-body">
+                    <img src="/img/logo_brissa_1.png" class="card-img-top mx-auto m-2 w-50"><br><br>{{!--<br> = endLine--}}
+                    <form action="" method="post" onsubmit="return confirmation()">
+                        <div class="form-group">
+                            <input type="text" name="fullname" placeholder="Nombre" class="form-control" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="username" placeholder="Usuario" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Contraseña" class="form-control">
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="custom-select" name="rol">
+                                <option value="Supervisor">Supervisor</option>
+                                <option value="Reportes">Reportes</option>
+                                <option value="Planeacion">Planeacion</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button class="btn btn-info btn-block">
+                                GUARDAR CAMBIOS
+                            </button>
+                            <p class="mt-5 mb-4 text-muted">© 2022</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

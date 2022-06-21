@@ -1,0 +1,48 @@
+{{!-- hbs con la vista del inicio de sesión --}}
+
+{{!--Script para mostrar/ocultar contraseña de usuario--}}
+<script type="text/javascript">
+    function showPassword(){
+        var pass = document.getElementById("passwordInput");
+        if (pass.type === "password") {
+            pass.type = "text";
+        }else{
+            pass.type = "password";
+        }
+    }
+</script>
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header bg-info">
+                    <h3 class="text-light">INICIO DE SESIÓN</h3>
+                </div>
+
+                {{!-- Card-body con todos los elementos (logo, campos de texto y contraseña) --}}
+                <div class="card-body">
+                    <img src="/img/logo_brissa_1.png" class="card-img-top mx-auto m-2 w-50"><br><br>
+
+                    <form action="/signin" method="post">
+                        <div>
+                            <input type="text" name="username" placeholder="Usuario" class="form-control" autofocus>
+                        </div><br> {{!--br sirve para un salto de linea (\n)--}}
+                        
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Contraseña" class="form-control" id="passwordInput"><br>
+                            <input type="checkbox" onclick="showPassword()"> Mostrar contraseña {{!--Botón para mostrar/ocultar contraseña--}}
+                        </div>
+                        
+                        <div class="form-group">
+                            <button class="btn btn-info btn-block">
+                                ENTRAR
+                            </button>
+                            <p class="mt-5 mb-4 text-muted">© 2022</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+{{!--hbs para menú de tiempos - permite CRUD de ordenes--}}
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+{{#if user}}
+
+<br><br><br>
+
+{{!--Se usa wrapper para hacer el grid--}}
+<div class="wrapper">
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Ordenes</h3>
+        </div>
+
+        {{!--Cuerpo de la primera carta, opción para ver INFO de ordenes--}}
+        <div class="card-body">
+            <img src="/img/buscar.png" class="card-img-top mx-auto m-2 w-50">           
+            <div class="form-group">                
+                <form>
+                    <div class="dropdown">
+                        <button class="btn btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ordenes
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/export">Consultar ordenes</a>
+                            <a class="dropdown-item" href="/editot">Editar orden</a>
+                            <a class="dropdown-item" href="/deleteot">Borrar orden</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Card para novedades--}}
+    <div class="card text-center ">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Novedades</h3> 
+        </div>
+
+        <div class="card-body">
+            <img src="/img/buscar2.png" class="card-img-top mx-auto m-2 w-50">           
+            <div class="form-group">                
+                <form action="/rp_novedades" method="get">
+                    <button class="btn btn-success btn-block" >
+                        Búsqueda en novedades
+                    </button> 
+                </form><br>
+            </div>
+        </div>
+    </div>
+
+    {{!--Card para gráficas--}}
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Gráficas</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <img src="/img/torta.png" class="card-img-top mx-auto m-2 w-50">                 
+                    <form action="/graficos" method="get">
+                        <button class="btn btn-success btn-block">
+                            Gráficas
+                        </button>
+                    </form><br>
+            </div>
+        </div>
+    </div>
+
+    {{!--Card para mantenimiento--}}
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Mantenimiento</h3>
+        </div>
+
+        <div class="card-body">
+        <img src="/img/coser.png" class="card-img-top mx-auto m-2 w-50">
+            <div class="form-group">                
+                <form>
+                    <div class="dropdown">
+                        <button class="btn btn-success btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Mantenimiento
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/graficosmtto">Liquidación</a>
+                            <a class="dropdown-item" href="/novedadesmtto">Novedades</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!--Card para CRUD de empleados--}}
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Empleados</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <img src="/img/silueta.png" class="card-img-top mx-auto m-2 w-50">                 
+                    <form action="/mainoperator" method="get">
+                        <button class="btn btn-success btn-block">
+                            Gestión de empleados
+                        </button>
+                    </form>
+                    <br>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{else}}
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+    {{!--Card si el usuario no está logeado--}}
+
+    <div class="wrapper2">
+    <div class="card text-center">
+        <div class="card-header bg-info">
+            <h3 class="text-light">Sesión caducada</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <img src="/img/logo_brissa_1.png" class="card-img-top mx-auto m-2 w-50">
+                <br>           
+                    <form action="/logout" method="get">
+                        <button class="btn btn-danger btn-block">
+                            Inicio de sesión
+                        </button>
+                    </form><br>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{{/if}}

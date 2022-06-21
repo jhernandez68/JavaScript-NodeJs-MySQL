@@ -1,0 +1,32 @@
+{{!--HBS para filtrar datos y mostrarlos con Chartjs--}}
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header bg-info">
+                    <h3 class="text-light">FILTRAR DATOS MTTO</h3>
+                </div>
+                <div class="card-body ">
+                    <form action="/mantenimiento" method="post">
+                        <div class="form-group">                     
+                            <p class="text-primary">Fecha Inicio</p>
+                                <input type="Date" name="date_1" class="form-control"  aria-label="date1">
+                            <p class="text-primary">Fecha Fin</p>
+                                <input type="Date" name="date_2" class="form-control" aria-label="date_2" >
+                            <br>
+                            <p class="text-primary">Hora inicio</p>
+                            <input type="time" name="time_1" class="form-control" aria-label="time_1"/>
+                            <br>
+                            <p class="text-primary"> Hora fin</p>
+                            <input type="time" name="time_2" class="form-control" aria-label="time_2"/>
+                            <br>   
+                            <div class="form-group">
+                                <button class="btn btn-success btn-block bg-info"> FILTRAR</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

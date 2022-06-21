@@ -1,0 +1,155 @@
+<br>
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+
+<div class="collapse multi-collapse" id="multiCollapseExample1">
+    <div class="container p-4 ">
+            <div class="row ">
+                <div class="col-md-3 mx-auto">
+                    <div class="">
+                        <div class="card-header bg-info">
+                            <h6 class="text-light">DATOS</h6>
+                        </div>
+                        <div class="card card-body ">
+                            <p class="text-dark text-left">u_primera (total): {{total_primera}}</p>
+                            <p class="text-dark text-left">u_Segunda (total): {{total_segunda}}</p>
+                            <p class="text-dark text-left">Rendimiento (Promedio):
+                                <script type="text/javascript">
+                                    document.write({{redo}}.toFixed(3));
+                                </script>
+                            </p>
+                            <p class="text-dark text-left">ORDEN: {{Search}}</p>
+                            <p class="text-dark text-left">Fecha: {{date_1}}</p>
+                            <p class="text-dark text-left">Fecha Fin: {{date_2}}</p>
+                            <p class="text-dark text-left">Área: {{area}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="container-fluid text-center" >
+    {{!--table-hover: Propiedad para marcar cada row--}}
+    <table class="table table-bordered table-striped table-hover">
+
+        {{!-- Container botones principales --}}
+        <div class="container-fluid text-center row justify-content-start ">
+            
+            <a class="btn btn-danger mr-1" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Resumen !</a>
+            
+            <form action="/export/filterproductividadOD" method="get">
+                <button class="btn btn-danger text-center mr-1" >
+                    Filtrar datos solo por Fechas
+                    {{!--Icono de !--}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                </button>
+            </form>
+
+            <form action="/export/filterproductividad" method="get">
+                <button class="btn btn-danger text-center mr-1" >
+                    Filtrar datos por Fecha y Hora
+                    {{!--Icono de !--}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                </button>
+            </form>
+
+            <form action="/export/filteruser" method="get">
+                <button class="btn btn-danger text-center mr-1">
+                    Filtrar datos por Operario
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>                    
+                </button>
+            </form>
+                        
+            {{!--Botón para exportar datos en la db a csv--}}
+            <form action="/export/downloadcsv" method="get">
+            <button class="btn btn-success text-center-m1" >
+                Descargar CSV
+                {{!--Icono guardar--}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                </svg>
+                </button>
+            </form>
+
+            <form action="/searchot" method="post" >
+                <div class="input-group">
+                    <input type="search" class="form-control rounded" placeholder="Buscar ORDEN" aria-label="Search" aria-describedby="search-addon"  name="Search"/>
+                        <select class="custom-select" name="area">
+                            <option value="acolchado">Acolchado</option>
+                            <option value="almohada">Almohada</option>
+                            <option value="corte">Corte</option>
+                            <option value="confeccion">Confección</option>
+                            <option value="empaque">Empaque</option>
+                        </select>
+                    <button class="btn btn-danger text-center mr-1" >
+                        Buscar orden de Trabajo
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <thead class="thead-dark">
+        {{!--Cabecera de la tabla--}}
+            <tr>
+                <th>Orden</th>
+                <th>Parte</th>
+                <th>Desc</th>
+                <th>Programadas</th>
+                <th>T_Est</th>
+                <th>Destino</th>
+                <th>Modulo</th>
+                <th>Operario</th>
+                <th>Ruta</th>
+                <th>F_ini</th>
+                <th>H_ini</th>
+                <th>F_fin</th>
+                <th>H_fin</th>
+                <th>t_total</th>
+                <th>Primera</th>
+                <th>Segunda</th>
+                <th>Comentario</th>
+                <th>Rendimiento</th>
+            </tr>
+        </thead>
+        
+        {{!-- Ciclo para cada uno de los datos de la tabla productividad --}}
+        {{#each productividad}}
+
+        {{!-- Se lista dinamicamente cada uno de los campos del arreglo 'productividad' --}}
+            <tbody>
+            {{!--Contenido de la tabla--}}
+                <tr>
+                    <td>{{orden}}</td>
+                    <td>{{parte}}</td>
+                    <td>{{descripcion}}</td>
+                    <td>{{und_prg}}</td>
+                    <td>{{t_est}}</td>
+                    <td>{{destino}}</td>
+                    <td>{{modulo}}</td>
+                    <td>{{operario}}</td>
+                    <td>{{ruta}}</td>
+                    <td>{{f_inicio}}</td>
+                    <td>{{h_inicio}}</td>
+                    <td>{{f_fin}}</td>
+                    <td>{{h_fin}}</td>
+                    <td>{{t_total}}</td>
+                    <td>{{u_primera}}</td>
+                    <td>{{u_segunda}}</td>
+                    <td>{{comentario}}</td>
+                    <td>{{rendimiento}}</td>
+                </tr>
+            </tbody>
+        {{/each}}
+    </table>
+</div>

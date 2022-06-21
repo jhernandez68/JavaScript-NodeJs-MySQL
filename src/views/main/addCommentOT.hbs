@@ -1,0 +1,65 @@
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+
+<div class="collapse multi-collapse" id="multiCollapseExample1">
+    <div class="container p-4 ">
+            <div class="row ">
+                <div class="col-md-3 mx-auto">
+                    <div class="">
+                        <div class="card-header bg-info">
+                            <h6 class="text-light">COMENTARIO ACTUAL</h6>
+                        </div>
+                        <div class="card card-body ">
+                            <p class="text-dark text-left">{{comment2}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header bg-info">
+                    <h4 class="text-light">Comentario orden #: {{id}} </h4> <br>
+                    <h4 class="text-light">Orden: {{ot}} </h4>
+                </div>
+
+                {{!-- Card-body con comentario --}}
+                <div class="card-body">
+                    <form action="/addCommentOT/{{id}}" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" name="comentario" id = "comentario" placeholder="Comentario" class="form-control" autofocus>
+                            <div class="input-group-append">
+                                <button  class="btn btn-success btn-block" >
+                                    Guardar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="wrapper4">
+                        <form action="/mainmenu" method="get">
+                            <div class="espaciowrapper4">
+                                <button type="submit" class="btn btn-danger btn-block">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
+
+                        <div>
+                            <a class="btn btn-info btn-block" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

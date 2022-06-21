@@ -1,0 +1,44 @@
+{{!--HBS para filtrar Ordenes de productividad por Fecha Inicial- Fecha Final y área--}}
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header bg-info">
+                    <h3 class="text-light">FILTRAR DATOS</h3>
+                </div>
+                <div class="card-body ">
+                    <form action="/export/exportexcel2" method="post">
+                        <div class="form-group">                     
+                            <p class="text-primary">Fecha inicio</p>
+                                <input type="Date" name="date_1" class="form-control"  aria-label="date1">
+
+                            <p class="text-primary">Hora inicio</p>
+                            <input type="time" name="time_1" class="form-control" aria-label="time_1"/>                            
+                            
+                            <p class="text-primary">Fecha final</p>
+                                <input type="Date" name="date_2" class="form-control" aria-label="date_2" >
+
+                            <p class="text-primary"> Hora fin</p>
+                            <input type="time" name="time_2" class="form-control" aria-label="time_2"/>
+                            
+                            <p class="text-primary">Área</p>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select" name="area">
+                                        <option value="acolchado">Acolchado</option>
+                                        <option value="almohada">Almohada</option>
+                                        <option value="corte">Corte</option>
+                                        <option value="confeccion">Confección</option>
+                                        <option value="empaque">Empaque</option>
+                                    </select>
+                                </div>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-block bg-info"> FILTRAR</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{{!-- Container para anidar una nueva orden --}}
+<div class="container p-4 col-auto ">
+    <div class="row">
+        <div class="col-md-4 mx-auto ">
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <h1 class="text-light text-center"> AGREGAR PLAN DE TRABAJO </h1>
+                    {{!-- Se hace un post de la tarjeta para guardar "link en la bd" --}}
+                        <form action="/links/add" method="post">
+                            <div class= "form-group">
+                                <input type="text" class="form-control" name="title" placeholder="Titulo" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="description" rows="2" class="form-control" placeholder="Descripción"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-block bg-info"> AÑADIR</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{{!!--Navbar con contenido para cerrar sesión--}}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-primary align-center">M O D A N O V A - 
+        <script>
+            date = new Date().toLocaleDateString();
+            document.write(date);
+        </script>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">  
+        {{!-- Si el usuario existe: --}}
+          {{#if user}}
+          <div class="dropdown">
+            <a class="dropdown-toggle btn text-light" data-toggle="dropdown" href="#" >{{user.username}}</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li><a class="btn text-primary" href="/MainAll"> Menú Principal</a></li>                    
+                <li><a class="btn text-primary" href="/logout"> Cerrar Sesión</a></li>
+              </ul>
+          </div> 
+          {{/if}}
+      </ul>
+    </div>
+  
+  </div>
+</nav>

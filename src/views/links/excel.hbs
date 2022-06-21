@@ -1,0 +1,124 @@
+{{!--hbs para crud excel - db --}}
+
+{{!--Letrero con info de inicio--}}
+<h1 class="text-center text-info display-3 text-success"> 
+    <i>CARGAR ORDENES DE EXCEL A LA BASE DE DATOS</i>
+    <br>
+</h1>
+
+{{!-- Funciones de alerta para confirmar --}}
+
+{{!-- Scripts para borrar | Guardar --}}
+<script type="text/javascript">
+    function confirmation(){
+        if(confirm("¿Está seguro de BORRAR los datos?")){
+            return true;
+            }else{
+                return false;
+                }
+        }
+</script>
+    
+    <script type="text/javascript">
+        function confirmation2(){
+            if(confirm("¿Está seguro de GUARDAR los datos?")){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
+
+{{!-- Creación de la tabla
+        para mostrar cada uno de los atributos del arreglo 'data' --}}
+
+<div class="container-fluid text-center">
+    {{!--table-hover: Propiedad para marcar cada row--}}
+    <table class="table table-bordered table-primary table-striped table-hover">
+
+        {{!-- Container botones principales --}}
+        <div class="container-fluid text-center row justify-content-start ">
+            
+            {{!-- Botones principales --}}
+            
+            {{!-- leer archivo  --}}
+            <form action="/links/read" method="post">
+                {{!-- Se obtiene el nombre del archivo y en la lógica se le asigna la ruta ((foo))--}}
+                <input type="file" name="contenidoExcel" accept=".xlsx, .xls"/>
+                <button class="btn btn-primary mr-1"> 
+                    VER DATOS (excel)
+                    {{!--Icono de ver--}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                    </svg>
+                    </button>
+            </form>
+
+            {{!--Botón para Borrar datos en la db--}}    
+            <form action="/links/excel" method="get" onsubmit="return confirmation()">
+                <button class="btn btn-danger text-center mr-1" >
+                    BORRAR EN BASE DE DATOS
+                    {{!--Icono de !--}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                    </button>
+            </form>
+
+            {{!--Botón para guardar datos en la db--}}
+            <form action="/links/excel" method="post" onsubmit="return confirmation2()">
+            <button class="btn btn-success text-center-m1" >
+                GUARDAR EN BASE DE DATOS
+                {{!--Icono guardar--}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                </svg>
+                </button>
+            </form>
+            
+        </div>
+        
+        <thead class="thead-dark">
+        {{!--Cabecera de la tabla--}}
+            <tr>
+                <th>ORDEN</th>
+                <th>PARTE</th>
+                <th>DESCRIPCIÓN</th>
+                <th>CANTIDAD</th>
+                <th>FECHA</th>
+                <th>TURNO</th>
+                <th>TIEMPO ESTANDAR</th>
+                <th>DESTINO</th>
+                <th>ÁREA</th>
+                <th>MÓDULO</th>
+                <th>ESTADO</th>
+            </tr>
+        </thead>
+
+        {{!-- Ciclo para cada uno de los datos del archivo de excel --}}
+        {{#each data}}
+
+        {{!-- Se lista dinamicamente cada uno de los campos del arreglo 'data' --}}
+            <tbody>
+            {{!--Contenido de la tabla--}}
+                <tr>
+                    <td>{{OT}}</td>
+                    <td>{{PARTE}}</td>
+                    <td>{{DESCRIPCION}}</td>
+                    <td>{{CANTIDAD}}</td>
+                    <td>{{FECHA}}</td>
+                    <td>{{TURNO}}</td>
+                    <td>{{TE}}</td>
+                    <td>{{DESTINO}}</td>
+                    <td>{{AREA}}</td>
+                    <td>{{MODULO}}</td>
+                    <td>{{ESTADO}}</td>
+                </tr>
+            </tbody>
+
+        {{/each}}
+    </table>
+</div>

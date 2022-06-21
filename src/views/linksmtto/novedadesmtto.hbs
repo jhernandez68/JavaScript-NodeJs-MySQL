@@ -1,0 +1,88 @@
+<br>
+{{!--! HBS PARA MOSTRAR MAQUINAS EN MTTO --}}
+
+<link href="/CSS/style.css" rel="stylesheet" type="text/css">
+<div class="container-fluid text-center" >
+    {{!--table-hover: Propiedad para marcar cada row--}}
+    <table class="table table-bordered table-striped table-hover">
+
+        {{!-- Container botones principales --}}
+        <div class="container-fluid text-center row justify-content-start espacio-sup-inf">
+
+            <form action="/novedadesmtto" method="get">
+                <button class="btn btn-danger text-center mr-1 " >
+                    Actualizar
+                    {{!--Icono de !--}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                    </button>
+            </form>
+
+            {{!-- Se muestra la hora de ultima actualización con el script--}}
+            <p id="hora"></p>
+        </div>
+
+        <script type="text/javascript">
+
+            const formatHour = (f_i) => {
+                var formatted_hour;
+                console.log('f_i: ' + f_i);
+                if(f_i.getHours() < 10 && f_i.getMinutes() < 10){
+                    formatted_hour = '0' + f_i.getHours() + ':0' + f_i.getMinutes();
+                    return formatted_hour;
+                } else if(f_i.getHours()< 10 && f_i.getMinutes() > 9){
+                    formatted_hour = '0' + f_i.getHours() + ':' + f_i.getMinutes();
+                    return formatted_hour;
+                } else if(f_i.getHours() > 10 && f_i.getMinutes() < 10){
+                    formatted_hour = f_i.getHours() + ':0' + f_i.getMinutes();
+                    return formatted_hour;
+                } else if(f_i.getHours == 10 ){
+                    formatted_hour = f_i.getHours() + ':0' + f_i.getMinutes();
+                    return formatted_hour;
+                }else {
+                    formatted_hour = f_i.getHours() + ':' + f_i.getMinutes();
+                    return formatted_hour;
+                }
+            }
+
+        const date = new Date(document.lastModified);
+
+        document.getElementById("hora").innerHTML = 'Ultima actualización: ' + formatHour(date);
+        </script>
+
+        <thead class="thead-dark">
+        {{!--Cabecera de la tabla--}}
+            <tr>
+                <th>ID</th>
+                <th>Máquina</th>
+                <th>Tipo</th>
+                <th>Fecha inicio</th>
+                <th>Hora inicio</th>
+                <th>Fecha fin</th>
+                <th>Hora fin</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        
+        {{!-- Ciclo para cada uno de los datos de la tabla productividad --}}
+        {{#each maquinas}}
+
+        {{!-- Se lista dinamicamente cada uno de los campos del arreglo 'productividad' --}}
+            <tbody>
+            {{!--Contenido de la tabla--}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{maquina}}</td>
+                    <td>{{t_reporte}}</td>
+                    <td>{{f_inicial}}</td>
+                    <td>{{h_inicial}}</td>
+                    <td>{{f_final}}</td>
+                    <td>{{h_final}}</td>
+                    <td>{{estado}}</td>
+                </tr>
+            </tbody>
+        {{/each}}
+    </table>
+</div>
